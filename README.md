@@ -26,7 +26,7 @@
 - ✍️ **Ulasan Menu**: Berikan ulasan (satu kali per menu per pengguna).
 - 🧑 **Manajemen Role**: Hak akses berbeda untuk pengguna dan admin.
 - 🔐 **Autentikasi Aman**: Login menggunakan JWT dengan token yang valid selama 1 jam.
-- 📊 **Log Aktivitas**: Pantau aktivitas pengguna melalui tabel `activity_log`.
+- 📊 **Log Aktivitas**: Pantau aktivitas perubahan yang terjadi di halaman admin melalui tabel `activity_log`.
 
 ---
 
@@ -136,6 +136,7 @@ File pengujian utama:
 - **Kebersihan Kode**: File duplikat atau usang telah dihapus untuk menjaga proyek tetap rapi.
 - **Keamanan**: Selalu gunakan `JWT_SECRET` yang kuat di file `.env` untuk mencegah kebocoran token.
 - **Kontribusi**: Silakan buka *issue* atau *pull request* untuk perbaikan atau fitur baru.
+- **Port Laragon/Xampp**: Atur Port ke 3307 karena defaultnya adalah 3306.
 
 ---
 
