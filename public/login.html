@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="logo/icon.ico">
+    <title>Login - KantinKu</title>
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h1 class="brand">KantinKu</h1>
+      <h2>Login</h2>
+
+      <form id="login-form" class="login-form">
+        <div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message"></div>
+        
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Masukkan username" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Masukkan password" required />
+
+        <button type="submit" class="btn-login">Masuk</button>
+      </form>
+
+      <p class="signup-text">
+        Belum punya akun?<br />
+        <a href="register.html" class="register-link">Register sekarang</a>
+      </p>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Check if user is already logged in
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+          window.location.href = 'user.html';
+          return;
+        }
+        
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const errorMessage = document.getElementById('error-message');
+          const successMessage = document.getElementById('success-message');
+          
+          // Hide messages
+          errorMessage.style.display = 'none';
+          successMessage.style.display = 'none';
+          
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+          
+          // Validate input
+          if (!username || !password) {
+            errorMessage.textContent = 'Username dan password harus diisi';
+            errorMessage.style.display = 'block';
+            return;
+          }
+          
+          // Show loading message
+          successMessage.textContent = 'Sedang login...';
+          successMessage.style.display = 'block';
+          
+          // Send data using XMLHttpRequest
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', 'http://localhost:3300/api/auth/login');
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          
+          xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              // Success
+              const response = JSON.parse(xhr.responseText);
+              
+              // Save auth data to localStorage
+              localStorage.setItem('token', response.token);
+              localStorage.setItem('user', JSON.stringify(response.user));
+              localStorage.setItem('isLoggedIn', 'true');
+              
+              // Show success message with user name
+              const userName = response.user.nama || response.user.username;
+              successMessage.textContent = `Login berhasil! Selamat datang, ${userName}. Mengalihkan ke halaman utama...`;
+              successMessage.style.display = 'block';
+              
+              // Redirect to user page on success
+              setTimeout(function() {
+                window.location.href = 'user.html';
+              }, 2000);
+            } else {
+              // Error
+              try {
+                const response = JSON.parse(xhr.responseText);
+                errorMessage.textContent = response.error || 'Username atau password salah';
+              } catch (e) {
+                errorMessage.textContent = 'Username atau password salah';
+              }
+              errorMessage.style.display = 'block';
+              successMessage.style.display = 'none';
+            }
+          };
+          
+          xhr.onerror = function() {
+            errorMessage.textContent = 'Terjadi kesalahan saat login. Coba lagi nanti.';
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+          };
+          
+          // Send the request
+          xhr.send(JSON.stringify({
+            username: username,
+            password: password
+          }));
+        });
+      });
+    </script>
+  </body>
+</html>

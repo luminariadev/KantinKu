@@ -1,0 +1,78 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background: #fffcee;
+}
+
+.hero {
+  padding: 30px;
+  text-align: center;
+}
+
+.lokasi {
+  color: #f2994a;
+}
+
+.kantin-baris {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  max-width: calc((170px + 20px) * 8); /* 8 card + 7 gap antar card */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.kantin-card {
+  width: 140px;
+  height: 90px;
+  background: white;
+  border: 2px solid #fff3c4;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* tetap kiri agar icon dan teks berdampingan */
+  gap: 10px;
+  padding-left: 30px; /* ini yang dorong isi ke kanan */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.kantin-card i {
+  font-size: 28px;
+  color: #ffe89e;
+}
+
+.kantin-card span {
+  font-weight: bold;
+  color: #f2994a;
+}
+
+.kantin-card:hover {
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+.kantin-link {
+  text-decoration: none;
+}
+
+.bangku {
+  height: 90px;
+  width: 540px;
+  background-color: #fff5cc;
+  border: none;
+  border-radius: 0;
+  position: relative;
+  top: 3px;
+}
+
+/* Sembunyikan bangku saat lebar window >= 1460px */
+@media (max-width: 1461px) {
+  .bangku {
+    display: none;
+  }
+}
+
+.kantin-baris {
+  margin-bottom: 60px; /* atau 80px jika kamu ingin lebih jauh dari footer */
+}

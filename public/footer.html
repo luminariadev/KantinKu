@@ -1,0 +1,39 @@
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-branding">
+      <a href="index.html" class="footer-logo">
+        <img src="logo/kantinku.png" alt="Logo KantinKu" class="logo-img">
+        <span>Kantin<span class="highlight">Ku</span></span>
+      </a>
+      <p class="footer-slogan">Kuliner terbaik di Kantin Merah</p>
+      <div class="footer-icons">
+        <i class="fas fa-utensils"></i>
+        <i class="fas fa-coffee"></i>
+        <i class="fas fa-ice-cream"></i>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <h4>Navigasi</h4>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-house"></i> Semua Menu</a></li>
+        <li><a href="denah.html"><i class="fas fa-map-marker-alt"></i> Denah & Kontak</a></li>
+        <li><a href="favorite.html"><i class="fas fa-heart"></i> Daftar Favorite</a></li>
+        <li><a href="login.html"><i class="fas fa-user"></i> Masuk</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Kirim Masukan</h4>
+      <form id="contact-form" action="/api/contact" method="POST">
+        <input type="text" id="contact-name" name="name" placeholder="Nama" required>
+        <input type="email" id="contact-email" name="email" placeholder="Email" required>
+        <textarea id="contact-message" name="message" placeholder="Pesan" required></textarea>
+        <button type="submit" class="submit-btn">Kirim <i class="fas fa-paper-plane"></i></button>
+        <p id="form-message" class="form-message"></p>
+      </form>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <p>© 2025 KantinKu. All rights reserved. Developed by <a href="https://x.com/kantinkuteam" target="_blank">KantinKu Team</a></p>
+  </div>
+  <script src="/js/contactForm.js"></script>
+</footer>

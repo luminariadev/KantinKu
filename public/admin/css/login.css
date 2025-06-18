@@ -1,0 +1,205 @@
+:root {
+  --primary: #ffcc4d;
+  --accent: #ff6464;
+  --dark: #333;
+  --light: #f8f9fa;
+  --danger: #dc3545;
+  --success: #28a745;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fffcee;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  text-align: center;
+  margin: 15px;
+}
+
+.brand {
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #d23f3f;
+}
+
+.brand span {
+  color: var(--accent);
+}
+
+h2 {
+  color: var(--dark);
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.login-form {
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--dark);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.btn-login {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  touch-action: manipulation;
+}
+
+.btn-login:hover {
+  background-color: #e05555;
+}
+
+.error-message {
+  color: var(--danger);
+  background-color: rgba(220, 53, 69, 0.1);
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  display: none;
+  font-size: 12px;
+}
+
+.success-message {
+  color: var(--success);
+  background-color: rgba(40, 167, 69, 0.1);
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  display: none;
+  font-size: 12px;
+}
+
+.back-link {
+  display: block;
+  margin-top: 15px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px;
+  touch-action: manipulation;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+  .login-container {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .brand {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  label {
+    font-size: 13px;
+  }
+
+  input {
+    padding: 8px;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .btn-login {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .error-message,
+  .success-message {
+    padding: 6px;
+    font-size: 11px;
+  }
+
+  .back-link {
+    font-size: 13px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .brand {
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  label {
+    font-size: 12px;
+  }
+
+  input {
+    padding: 6px;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .btn-login {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .error-message,
+  .success-message {
+    padding: 5px;
+    font-size: 10px;
+  }
+
+  .back-link {
+    font-size: 12px;
+    padding: 5px;
+  }
+}

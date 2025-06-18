@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="../logo/icon.ico">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <style>
+    .toggle-sidebar {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 10px;
+    }
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: width 0.3s ease;
+    }
+    .sidebar.collapsed {
+      width: 60px;
+    }
+    .content {
+      transition: margin-left 0.3s ease;
+    }
+    .content.collapsed {
+      margin-left: 60px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      padding: 0 20px 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--accent);
+    }
+    .brand img {
+      height: 48px;
+      transition: all 0.3s ease;
+    }
+    .sidebar.collapsed .brand {
+      justify-content: center;
+    }
+    .sidebar.collapsed .brand img {
+      height: 32px;
+    }
+    .sidebar.collapsed .brand span {
+      display: none;
+    }
+    .menu {
+      flex-grow: 1;
+    }
+    .menu a {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: #444;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    .menu a:hover, .menu a.active {
+      background-color: rgba(255, 100, 100, 0.1);
+      color: var(--accent);
+    }
+    .menu i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .menu span {
+      overflow: hidden;
+      text-overflow: clip;
+    }
+    .sidebar.collapsed .menu span {
+      display: none !important;
+    }
+    .logout-section {
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    .logout-section a {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: #444;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .logout-section a:hover {
+      background-color: rgba(255, 100, 100, 0.1);
+      color: var(--accent);
+    }
+    .logout-section i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+    .sidebar.collapsed .logout-section a span {
+      display: none;
+    }
+    .sidebar.collapsed .logout-section a {
+      justify-content: center;
+    }
+    .admin-icon {
+      font-size: 24px;
+      color: var(--accent);
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="sidebar" id="sidebar">
+      <div>
+        <div class="brand">
+          <img src="../logo/kantinku.png" alt="Logo KantinKu">
+          <span>Admin</span>
+        </div>
+        <ul class="menu" id="menu-list">
+          <li><a href="#" class="active" data-section="dashboard-section"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+          <li><a href="#" data-section="menu-section"><i class="fas fa-utensils"></i> <span>Kelola Menu</span></a></li>
+          <li><a href="#" data-section="warung-section"><i class="fas fa-store"></i> <span>Kelola Warung</span></a></li>
+        </ul>
+      </div>
+      <div class="logout-section">
+        <a href="#" id="btn-logout-sidebar"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+      </div>
+    </div>
+
+    <div class="content" id="main-content">
+      <div class="header">
+      <button class="toggle-sidebar" id="toggleSidebar"><i class="fas fa-bars"></i></button>
+        <h1>Dashboard Admin</h1>
+        <div class="user-info">
+          <span id="admin-name">Admin</span>
+          <i class="fas fa-user-circle admin-icon" title="Admin Aktif"></i>
+        </div>
+      </div>
+
+      <div id="global-alert" class="alert hidden"></div>
+
+      <div id="dashboard-section" class="section">
+        <div class="card">
+          <div class="card-header">
+            <h2>Ringkasan</h2>
+          </div>
+          <div class="card-body">
+            <div id="summary-data" class="summary-grid">
+              <p>Memuat data...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2>Aktivitas Terbaru</h2>
+          </div>
+          <div class="card-body">
+            <div id="activity-data">
+              <p>Memuat data aktivitas...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="menu-section" class="section hidden">
+        <div class="card">
+          <div class="card-header">
+            <h2>Kelola Menu</h2>
+            <button class="btn-add" id="btn-add-menu"><i class="fas fa-plus"></i> Tambah Menu</button>
+          </div>
+          
+          <div class="card-body">
+            <table id="menu-table">
+              <thead>
+                <tr>
+                  <th class="sortable">ID</th>
+                  <th class="sortable">Nama Menu</th>
+                  <th class="sortable">Harga</th>
+                  <th class="sortable">Kategori</th>
+                  <th class="sortable">Warung</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="6">Memuat data...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="warung-section" class="section hidden">
+        <div class="card">
+          <div class="card-header">
+            <h2>Kelola Warung</h2>
+            <button class="btn-add" id="btn-add-warung"><i class="fas fa-plus"></i> Tambah Warung</button>
+          </div>
+          
+          <div class="card-body">
+<table id="warung-table">
+  <thead>
+    <tr>
+      <th class="sortable" style="width: 8%;">ID</th>
+      <th class="sortable" style="width: 25%;">Nama Warung</th>
+      <th class="sortable" style="width: 25%;">Lokasi</th>
+      <th class="sortable" style="width: 22%;">Kontak</th>
+      <th style="width: 20%;">Aksi</th>
+    </tr>
+  </thead>
+
+              <tbody>
+                <tr><td colspan="5">Memuat data...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="menu-modal" class="modal">
+        <div class="modal-content">
+          <h2 id="menu-modal-title">Tambah Menu</h2>
+          <span class="close-modal">×</span>
+          <form id="menu-form">
+            <input type="hidden" id="menu-id">
+            <div id="menu-alert" class="alert hidden"></div>
+            <div class="form-group">
+              <label for="menu-name">Nama Menu *<span class="required">*</span></label>
+              <input type="text" id="menu-name" required>
+            </div>
+            <div class="form-group">
+              <label for="menu-price">Harga *<span class="required">*</span></label>
+              <input type="number" id="menu-price" required>
+            </div>
+            <div class="form-group">
+              <label for="menu-description">Deskripsi</label>
+              <textarea id="menu-description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="menu-category">Kategori *<span class="required">*</span></label>
+              <select id="menu-category" required>
+                <option value="">Pilih Kategori</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="menu-warung">Warung *<span class="required">*</span></label>
+              <select id="menu-warung" required>
+                <option value="">Pilih Warung</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="menu-image">Foto Menu</label>
+              <input type="file" id="menu-image" accept="image/*">
+              <div id="menu-image-preview" class="image-preview"></div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn-cancel">Batal</button>
+              <button type="submit" class="btn-save">Simpan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="warung-modal" class="modal">
+        <div class="modal-content">
+          <h2 id="warung-modal-title">Tambah Warung</h2>
+          <span class="close-modal">×</span>
+          <form id="warung-form">
+            <input type="hidden" id="warung-id">
+            <div id="warung-alert" class="alert hidden"></div>
+            <div class="form-group">
+              <label for="warung-name">Nama Warung *<span class="required">*</span></label>
+              <input type="text" id="warung-name" required>
+            </div>
+            <div class="form-group">
+              <label for="warung-location">Lokasi *<span class="required">*</span></label>
+              <input type="text" id="warung-location" required>
+            </div>
+            <div class="form-group">
+              <label for="warung-contact">Kontak</label>
+              <input type="text" id="warung-contact">
+            </div>
+            <div class="form-group">
+              <label for="warung-description">Deskripsi</label>
+              <textarea id="warung-description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="warung-image">Foto Warung</label>
+              <input type="file" id="warung-image" accept="image/*">
+              <div id="warung-image-preview" class="image-preview"></div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn-cancel">Batal</button>
+              <button type="submit" class="btn-save">Simpan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+  <script>
+    document.getElementById('toggleSidebar').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('collapsed');
+      document.getElementById('main-content').classList.toggle('collapsed');
+    });
+  </script>
+
+<script>
+  function showPopup(message, type = 'success') {
+    const popup = document.createElement('div');
+    popup.className = 'popup-alert ' + type;
+    popup.innerText = message;
+    document.body.appendChild(popup);
+    setTimeout(() => popup.remove(), 3000);
+  }
+</script>
+<style>
+  .popup-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--accent);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 9999;
+    animation: fadeInOut 3s ease-in-out forwards;
+  }
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-10px); }
+  }
+</style>
+
+</body>
+</html>

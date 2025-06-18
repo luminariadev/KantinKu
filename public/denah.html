@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="logo/icon.ico">
+    <title>Denah & Kontak - KantinKu</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/denah.css" />
+    <link rel="stylesheet" href="css/KantinDetailModal.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo-bar">
+        <h1 class="logo" style="display: inline-flex; align-items: center; gap: 5px; margin: 0;">
+          <img src="logo/kantinku.png" alt="Logo KantinKu" class="logo-img" style="height: 40px;">
+          <span>KantinKu</span>
+        </h1>
+        <button class="hamburger" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav class="nav-menu">
+          <a href="index.html" class="nav-item"><i class="fas fa-house nav-icon"></i> Semua Menu</a>
+          <a href="denah.html" class="nav-item active"><i class="fas fa-circle-info nav-icon"></i> Denah & Kontak</a>
+          <a href="favorites.html" class="nav-item" id="favorite-nav"><i class="fas fa-heart nav-icon"></i> Daftar Favorite</a>
+          <a href="login.html" class="nav-item" id="user-nav"><i class="fas fa-user nav-icon"></i> <span id="user-name">Masuk</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h2>Dapatkan informasi mengenai kantimu disini</h2>
+        <h2 class="lokasi"><i class="fas fa-map-marker-alt"></i> Belakang gedung Hukum, Kantin Merah</h2>
+      </section>
+
+      <div class="kantin-baris">
+        <a class="kantin-link" href="#" data-canteen="patuanan">
+          <div class="kantin-card">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Kantin Patuanan</span>
+          </div>
+        </a>
+        <a class="kantin-link" href="#" data-canteen="gera-ice-cream">
+          <div class="kantin-card">
+            <i class="fa-solid fa-ice-cream"></i>
+            <span>Gera Ice Cream</span>
+          </div>
+        </a>
+        <a class="kantin-link" href="#" data-canteen="jajanan-kekinian">
+          <div class="kantin-card">
+            <i class="fa-solid fa-cookie"></i>
+            <span>Kantin Jajanan Kekinian</span>
+          </div>
+        </a>
+        <a class="kantin-link" href="#" data-canteen="mah-ica-2">
+          <div class="kantin-card">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Kantin Mah Ica 2</span>
+          </div>
+        </a>
+        <a class="kantin-link" href="#" data-canteen="teh-poci">
+          <div class="kantin-card">
+            <i class="fa-solid fa-mug-hot"></i>
+            <span>Teh Poci</span>
+          </div>
+        </a>
+        <a class="kantin-link" href="#" data-canteen="patuanan">
+          <div class="kantin-card">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Kantin Patuanan</span>
+          </div>
+        </a>
+        <a class="kantin-link" href="#" data-canteen="barokah">
+          <div class="kantin-card">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Kantin Barokah</span>
+          </div>
+        </a>
+        <a class="kantin-link" href="#" data-canteen="warmindo">
+          <div class="kantin-card">
+            <i class="fa-solid fa-bowl-food"></i>
+            <span>Warmindo</span>
+          </div>
+        </a>
+
+        <!-- Baris kedua -->
+        <a class="kantin-link" href="#" data-canteen="bunda-gorowok">
+          <div class="kantin-card">
+            <i class="fa-solid fa-burger"></i>
+            <span>Kantin Bunda Gorowok</span>
+          </div>
+        </a>
+        <div class="bangku"></div>
+        <div class="bangku"></div>
+        <a class="kantin-link" href="#" data-canteen="teh-teke">
+          <div class="kantin-card">
+            <i class="fa-solid fa-drumstick-bite"></i>
+            <span>Kantin Teh Teke</span>
+          </div>
+        </a>
+
+        <!-- Baris ketiga -->
+        <a class="kantin-link" href="#" data-canteen="patuanan">
+          <div class="kantin-card">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Kantin Patuanan</span>
+          </div>
+        </a>
+        <div class="bangku"></div>
+        <div class="bangku"></div>
+        <a class="kantin-link" href="#" data-canteen="mbak-shopie">
+          <div class="kantin-card">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Kantin Mbak Shopie</span>
+          </div>
+        </a>
+
+        <!-- Baris keempat -->
+        <a class="kantin-link" href="#" data-canteen="patuanan">
+          <div class="kantin-card">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Kantin Patuanan</span>
+          </div>
+        </a>
+        <div class="bangku"></div>
+        <div class="bangku"></div>
+        <a class="kantin-link" href="#" data-canteen="mbak-annisa">
+          <div class="kantin-card">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Kantin Mbak Annisa</span>
+          </div>
+        </a>
+
+        <!-- Baris kelima -->
+        <a class="kantin-link" href="#" data-canteen="patuanan">
+          <div class="kantin-card">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Kantin Patuanan</span>
+          </div>
+        </a>
+        <div class="bangku"></div>
+        <div class="bangku"></div>
+        <a class="kantin-link" href="#" data-canteen="ice-cube">
+          <div class="kantin-card">
+            <i class="fa-solid fa-ice-cream"></i>
+            <span>Kantin Ice Cube</span>
+          </div>
+        </a>
+      </div>
+    </main>
+
+    <div class="modal-overlay" id="kantin-modal">
+      <div class="modal-content">
+        <button class="close-btn">✕</button>
+        <h2 class="modal-title">Detail Kantin</h2>
+        <img id="modal-image" src="images/kantin1.jpg" alt="Kantin" class="modal-img" />
+        <div class="modal-body">
+          <div class="modal-header">
+            <h3 id="modal-name">Nama Kantin</h3>
+          </div>
+          <p id="modal-description" class="description">Deskripsi kantin</p>
+          <div class="info-line">
+            <p><i class="fas fa-map-marker-alt"></i> <span id="modal-location">Lokasi Kantin</span></p>
+            <p><i class="fas fa-clock"></i> <span id="modal-hours">Jam Buka</span></p>
+          </div>
+          <a id="modal-whatsapp" href="#" target="_blank" class="chat-btn">
+            Klik untuk WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/kantinDetailModal.js"></script>
+    <div id="footer"></div>
+    <script src="js/loadFooter.js"></script>
+    <script src="js/contactForm.js"></script>
+    <script>
+      // Hamburger Menu Logic
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("Hamburger menu script mulai dijalankan");
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+        if (!hamburger || !navMenu) {
+          console.error("Hamburger atau nav-menu tidak ditemukan");
+          return;
+        }
+        hamburger.addEventListener("click", () => {
+          console.log("Hamburger diklik");
+          navMenu.classList.toggle("active");
+          hamburger.querySelector("i").classList.toggle("fa-bars");
+          hamburger.querySelector("i").classList.toggle("fa-times");
+        });
+        navMenu.querySelectorAll(".nav-item").forEach(item => {
+          item.addEventListener("click", () => {
+            console.log("Nav item diklik");
+            navMenu.classList.remove("active");
+            hamburger.querySelector("i").classList.add("fa-bars");
+            hamburger.querySelector("i").classList.remove("fa-times");
+          });
+        });
+      });
+
+      // Update UI based on auth state and canteen links
+      document.addEventListener('DOMContentLoaded', () => {
+        updateAuthUI();
+
+        // Event listener untuk kartu kantin
+        document.querySelectorAll('.kantin-link').forEach(link => {
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const canteenId = link.getAttribute('data-canteen');
+            console.log(`Kantin diklik, ID: ${canteenId}, waktu: ${new Date().toLocaleString()}`);
+            window.showKantinModal(canteenId);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

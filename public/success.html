@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="logo/icon.ico">
+    <title>Pesan Sukses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .dark-yellow-bg {
+            background-color: #b88b00;
+        }
+        
+        .darker-yellow-bg {
+            background-color: #9a7600;
+        }
+        
+        .darkest-yellow-bg {
+            background-color: #7c6000;
+        }
+        
+        .success-shadow {
+            box-shadow: 0 10px 25px rgba(184, 139, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="dark-yellow-bg min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-2xl w-full bg-white rounded-2xl overflow-hidden success-shadow">
+        <!-- Header -->
+        <div class="darker-yellow-bg py-6 px-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-white">Pengiriman Pesan Berhasil!</h1>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="p-8 md:p-10">
+            <div class="flex flex-col items-center text-center">
+                <div class="relative mb-8">
+                    <div class="w-32 h-32 rounded-full bg-yellow-100 flex items-center justify-center floating">
+                        <i class="fas fa-check-circle text-6xl text-green-500"></i>
+                    </div>
+                    <div class="absolute -bottom-2 -right-2 w-12 h-12 rounded-full bg-yellow-300 flex items-center justify-center">
+                        <i class="fas fa-star text-yellow-700 text-xl"></i>
+                    </div>
+                </div>
+                
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Terima Kasih!</h2>
+                <p class="text-gray-600 mb-6 max-w-md">
+                    Masukan Anda telah berhasil dikirim. Kami sangat menghargai waktu Anda untuk berbagi pendapat!
+                </p>
+                
+                <div class="w-full max-w-xs bg-yellow-50 rounded-lg p-4 mb-6 border border-yellow-200">
+                    <div class="flex items-center">
+                        <div class="mr-3">
+                            <i class="fas fa-envelope text-yellow-600 text-xl"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-sm font-medium text-gray-700">Confirmation sent to:</p>
+                            <p class="text-sm text-gray-600">rizkianuari83@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 w-full max-w-xs">
+                    <button onclick="window.location.href='/index.html'" class="flex-1 darker-yellow-bg hover:darkest-yellow-bg text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                        <i class="fas fa-home mr-2"></i> Beranda
+                    </button>
+                        <button onclick="window.location.href='/index.html'"
+                        class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-utensils mr-2"></i> Lihat Menu
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="bg-gray-50 py-4 px-8 text-center border-t border-gray-200">
+            <p class="text-sm text-gray-500">
+                Ada Keperluan yang Lebih Lanjut? <a href="https://wa.me/6285793332548" class="text-yellow-700 hover:text-yellow-800 font-medium">Hubungi Kontak Kami</a>
+            </p>
+        </div>
+    </div>
+    
+    <!-- Confetti effect -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simple confetti effect
+            const colors = ['#FFD700', '#FFA500', '#FF8C00', '#FF6347', '#FF4500'];
+            
+            function createConfetti() {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = '50%';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.opacity = '0.8';
+                confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+                document.body.appendChild(confetti);
+                
+                let position = -10;
+                let rotation = Math.random() * 360;
+                const speed = 2 + Math.random() * 3;
+                const spinSpeed = Math.random() * 10;
+                
+                const fall = setInterval(() => {
+                    position += speed;
+                    rotation += spinSpeed;
+                    confetti.style.top = position + 'px';
+                    confetti.style.transform = 'rotate(' + rotation + 'deg)';
+                    
+                    if (position > window.innerHeight) {
+                        clearInterval(fall);
+                        confetti.remove();
+                    }
+                }, 20);
+            }
+            
+            // Create initial burst of confetti
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createConfetti, i * 50);
+            }
+            
+            // Continue with occasional confetti
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    createConfetti();
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

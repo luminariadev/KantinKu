@@ -1,0 +1,170 @@
+/* Gaya Umum */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fefbe9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.register-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.brand {
+  font-size: 28px;
+  color: #f5c948;
+  margin-bottom: 8px;
+}
+
+h2 {
+  margin: 0 0 24px;
+  font-weight: bold;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #f5a340;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(245, 163, 64, 0.2);
+}
+
+.btn-register {
+  background-color: #f5a340;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-register:hover {
+  background-color: #e08927;
+}
+
+.login-text {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #222;
+}
+
+.login-link {
+  font-weight: bold;
+  color: #f5a340;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+/* Pesan error dan sukses */
+.error-message,
+.success-message {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  text-align: center;
+  display: none;
+}
+
+.error-message {
+  background-color: #f44336;
+  color: white;
+}
+
+.success-message {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Responsivitas untuk Mobile */
+@media (max-width: 640px) {
+  .register-container {
+    padding: 16px;
+    max-width: 80%;
+    border-radius: 16px;
+  }
+
+  .brand {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .register-form {
+    gap: 10px;
+  }
+
+  label {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 6px;
+  }
+
+  .btn-register {
+    padding: 8px;
+    border-radius: 16px;
+    font-size: 14px;
+  }
+
+  .login-text {
+    font-size: 12px;
+    margin-top: 12px;
+  }
+
+  .error-message,
+  .success-message {
+    font-size: 12px;
+    padding: 8px;
+    margin-bottom: 12px;
+  }
+}

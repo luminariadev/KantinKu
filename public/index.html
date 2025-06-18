@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="logo/icon.ico">
+    <title>KantinKu</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo-bar">
+        <h1 class="logo">
+          <img src="logo/kantinku.png" alt="Logo KantinKu" class="logo-img">
+          <span>KantinKu</span>
+        </h1>
+        <button class="hamburger" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav class="nav-menu">
+          <a href="#" class="nav-item active"><i class="fas fa-house nav-icon"></i> Semua Menu</a>
+          <a href="denah.html" class="nav-item"><i class="fas fa-circle-info nav-icon"></i> Denah & Kontak</a>
+          <a href="favorites.html" class="nav-item" id="favorite-nav"><i class="fas fa-heart nav-icon"></i> Daftar Favorite</a>
+          <a href="login.html" class="nav-item" id="user-nav"><i class="fas fa-user nav-icon"></i> <span id="user-name">Masuk</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h2>
+          Kantin Kampus di Genggamanmu<br />
+          <span>Cari Menu, Pesan Mudah, Nikmati Cepat</span>
+        </h2>
+        <input type="text" placeholder="Cari" class="search-input" />
+        <div class="filter-buttons">
+          <button class="active">Makanan</button>
+          <button>Minuman</button>
+          <button>Jajanan</button>
+        </div>
+      </section>
+
+      <section class="menu-grid">
+        <!-- Menu cards will be loaded dynamically -->
+      </section>
+      
+      <div class="pagination-container">
+        <!-- Pagination controls will be added here -->
+      </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+      <div class="modal-content">
+        <button class="close-btn" id="close-modal-btn">✕</button>
+        <div class="favorite-icon" id="favorite-btn">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h2 class="modal-title">Detail Menu</h2>
+        <img src="images/food2.jpg" alt="Nasi Bakar" class="modal-images" />
+
+        <div class="modal-body">
+          <div class="modal-header">
+            <h3>Nasi Bakar</h3>
+            <span class="rating"></span>
+          </div>
+          <p class="description">Santapan Berat khas sunda yaitu Nasi yang dibakar dilengkapi Tahu dan tempe serta lalapan sambal korek.</p>
+          <p class="price">Rp. 15.000</p>
+
+          <div class="reviews">
+            <h4>Ulasan</h4>
+            <!-- Reviews will be loaded dynamically -->
+          </div>
+
+          <div class="review-form">
+            <h4>Tambahkan Ulasan</h4>
+            <div class="rating-input">
+              <span>Rating: </span>
+              <div class="star-rating">
+                <i class="fas fa-star" data-rating="1"></i>
+                <i class="fas fa-star" data-rating="2"></i>
+                <i class="fas fa-star" data-rating="3"></i>
+                <i class="fas fa-star" data-rating="4"></i>
+                <i class="fas fa-star" data-rating="5"></i>
+              </div>
+            </div>
+            <textarea id="review-comment" placeholder="Tulis ulasan Anda di sini..."></textarea>
+            <button id="submit-review" class="submit-review-btn">Kirim Ulasan</button>
+          </div>
+
+          <div class="warning-box">⚠️ Login untuk Menambahkan ulasan dan menu ini ke daftar favorite mu</div>
+
+         <a id="whatsapp-btn" class="chat-btn" target="_blank">Pesan via chat disini</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/pagination.js"></script>
+    <script src="js/user-reviews.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/user-favorites.js"></script>
+    <div id="footer"></div>
+    <script src="js/loadFooter.js"></script>
+    <script src="js/contactForm.js"></script>
+    <script>
+      // Hamburger Menu Logic
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("Hamburger menu script mulai dijalankan");
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+        if (!hamburger || !navMenu) {
+          console.error("Hamburger atau nav-menu tidak ditemukan");
+          return;
+        }
+        hamburger.addEventListener("click", () => {
+          console.log("Hamburger diklik");
+          navMenu.classList.toggle("active");
+          hamburger.querySelector("i").classList.toggle("fa-bars");
+          hamburger.querySelector("i").classList.toggle("fa-times");
+        });
+        navMenu.querySelectorAll(".nav-item").forEach(item => {
+          item.addEventListener("click", () => {
+            console.log("Nav item diklik");
+            navMenu.classList.remove("active");
+            hamburger.querySelector("i").classList.add("fa-bars");
+            hamburger.querySelector("i").classList.remove("fa-times");
+          });
+        });
+      });
+
+      // Update UI based on auth state
+      document.addEventListener('DOMContentLoaded', function() {
+        updateAuthUI();
+      });
+
+      // Modal debug script
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('Modal debug script loaded');
+        document.addEventListener('click', (e) => {
+          const card = e.target.closest('.menu-card');
+          if (card) {
+            console.log('Menu card clicked:', card.dataset.menuId, 'at', new Date().toLocaleString());
+          }
+        });
+        const modal = document.getElementById('modal');
+        if (modal) {
+          const observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+              if (mutation.attributeName === 'style') {
+                console.log('Modal style changed:', modal.style.display, 'at', new Date().toLocaleString());
+              }
+            });
+          });
+          observer.observe(modal, { attributes: true });
+        } else {
+          console.error('Modal element not found for debugging');
+        }
+        if (modal) {
+          modal.addEventListener('click', (e) => {
+            console.log('Modal clicked:', e.target.tagName, 'at', new Date().toLocaleString());
+          });
+          const modalContent = modal.querySelector('.modal-content');
+          if (modalContent) {
+            modalContent.addEventListener('click', (e) => {
+              console.log('Modal content clicked:', e.target.tagName, 'at', new Date().toLocaleString());
+              e.stopPropagation();
+            });
+          }
+        }
+        const closeBtn = document.getElementById('close-modal-btn');
+        if (closeBtn) {
+          closeBtn.addEventListener('click', () => {
+            console.log('Close modal button clicked at', new Date().toLocaleString());
+          });
+        }
+      });
+
+      // Star rating logic
+      document.addEventListener("DOMContentLoaded", () => {
+        const stars = document.querySelectorAll(".star-rating i");
+        let currentRating = 0;
+        stars.forEach((star, idx) => {
+          star.addEventListener("mouseover", () => {
+            stars.forEach((s, i) => {
+              s.style.color = i <= idx ? "#ffc107" : "#ccc";
+            });
+          });
+          star.addEventListener("mouseout", () => {
+            stars.forEach((s, i) => {
+              s.style.color = i < currentRating ? "#ffc107" : "#ccc";
+            });
+          });
+          star.addEventListener("click", () => {
+            currentRating = idx + 1;
+            stars.forEach((s, i) => {
+              s.style.color = i < currentRating ? "#ffc107" : "#ccc";
+            });
+            console.log("User selected rating:", currentRating);
+          });
+        });
+      });
+    </script>
+    
+    <style>
+      /* Pagination styles */
+      .pagination-container {
+        display: flex;
+        justify-content: center;
+        margin: 30px 0;
+      }
+      
+      .load-more-btn {
+        background-color: var(--primary);
+        color: #333;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      
+      .load-more-btn:hover {
+        background-color: #ffbb33;
+      }
+    </style>
+  </body>
+</html>

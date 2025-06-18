@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - KantinKu</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1 class="brand">Kantin<span>Ku</span></h1>
+    <h2>Admin Login</h2>
+
+    <form id="login-form" class="login-form">
+      <div id="error-message" class="error-message"></div>
+      <div id="success-message" class="success-message"></div>
+      
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Masukkan username admin" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+
+      <button type="submit" class="btn-login">Masuk</button>
+    </form>
+
+    <a href="../index.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Kembali ke Halaman Utama
+    </a>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

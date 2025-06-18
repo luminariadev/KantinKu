@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="logo/icon.ico">
+  <title>KantinKu</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/modal.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .favorites-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .favorites-header {
+      margin-bottom: 2rem;
+      text-align: center;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+    .favorites-header h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .favorites-header::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), #ff5a5f);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+    .favorites-header .heart-icon {
+      color: #ff5a5f;
+      font-size: 1.8rem;
+      transition: transform 0.3s;
+    }
+    .favorites-header:hover .heart-icon {
+      transform: scale(1.2);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .no-favorites {
+      text-align: center;
+      padding: 3rem;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      color: #666;
+      font-style: italic;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .menu-card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+    .menu-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .menu-info {
+      padding: 15px;
+      position: relative;
+    }
+    .menu-name {
+      font-size: 1.2rem;
+      margin: 0 0 8px 0;
+      color: #333;
+    }
+    .menu-price {
+      font-weight: bold;
+      color: var(--primary);
+      margin: 5px 0;
+    }
+    .menu-warung {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .menu-warung .fa-store {
+      color: var(--primary);
+      font-size: 14px;
+    }
+    .menu-rating {
+      font-size: 0.9rem;
+      color: #f8b400;
+      margin: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .favorite-icon {
+      position: absolute;
+      top: 0px;
+      right: 15px;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .favorite-icon.active {
+      color: #ff5a5f;
+    }
+    .favorite-icon:hover {
+      transform: scale(1.2);
+    }
+    @media (max-width: 768px) {
+      .menu-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+      .favorites-header h2 {
+        font-size: 1.6rem;
+      }
+      .favorites-header .heart-icon {
+        font-size: 1.4rem;
+      }
+    }
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+    .load-more-btn {
+      background-color: var(--primary);
+      color: #333;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .load-more-btn:hover {
+      background-color: #ffbb33;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-bar">
+      <div class="logo">
+        <img src="logo/kantinku.png" alt="Logo KantinKu" class="logo-img">
+        <span>KantinKu</span>
+      </div>
+      <button class="hamburger" aria-label="Toggle Menu">☰</button>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item"><i class="fas fa-house nav-icon"></i> Semua Menu</a>
+        <a href="denah.html" class="nav-item"><i class="fas fa-circle-info nav-icon"></i> Denah & Kontak</a>
+        <a href="favorites.html" class="nav-item active"><i class="fas fa-heart nav-icon"></i> Daftar Favorite</a>
+        <a href="user.html" class="nav-item" id="user-nav"><i class="fas fa-user nav-icon"></i> <span id="user-name">Profil</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="favorites-container">
+      <div class="favorites-header">
+        <h2>Menu Favorit Saya <i class="fas fa-heart heart-icon"></i></h2>
+      </div>
+      <div class="menu-grid" id="favorites-grid">
+        <!-- Favorite menu cards will be loaded dynamically -->
+      </div>
+      <div class="pagination-container">
+        <button class="load-more-btn" id="load-more-btn">Load More</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-content">
+      <button class="close-btn" id="close-modal-btn">✕</button>
+      <h2 class="modal-title">Detail Menu</h2>
+      <img src="images/food2.jpg" alt="Nasi Bakar" class="modal-images" />
+      <div class="modal-body">
+        <div class="modal-header">
+          <h3 id="modal-name">Nasi Bakar</h3>
+          <span class="rating" id="modal-rating">4.05★</span>
+        </div>
+        <p class="description" id="modal-description">Santapan Berat khas sunda yaitu Nasi yang dibakar dilengkapi Tahu dan tempe serta lalapan sambal korek.</p>
+        <p class="price" id="modal-price"></p>
+        <div class="favorite-icon" id="favorite-btn"><i class="fas fa-heart"></i></div>
+        <div class="reviews">
+          <h4>Ulasan</h4>
+          <div id="reviews-container">
+            <!-- Reviews will be loaded dynamically -->
+          </div>
+        </div>
+        <div class="review-form" style="display: none;">
+          <h4>Tambahkan Ulasan</h4>
+          <div class="rating-input">
+            <span>Rating: </span>
+            <div class="star-rating">
+              <i class="fas fa-star" data-rating="1"></i>
+              <i class="fas fa-star" data-rating="2"></i>
+              <i class="fas fa-star" data-rating="3"></i>
+              <i class="fas fa-star" data-rating="4"></i>
+              <i class="fas fa-star" data-rating="5"></i>
+            </div>
+          </div>
+          <textarea id="review-comment" placeholder="Tulis ulasan Anda di sini..."></textarea>
+          <button id="submit-review" class="submit-review-btn">Kirim Ulasan</button>
+        </div>
+        <div class="warning-box" id="warning-box">⚠️ Login untuk Menambahkan ulasan dan menu ini ke daftar favorite mu</div>
+        <a id="whatsapp-btn" class="chat-btn" target="_blank">Pesan via chat disini</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/global.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/notification.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/favorites-enhancement.js"></script>
+  <div id="footer"></div>
+  <script src="js/loadFooter.js"></script>
+  <script src="js/contactForm.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      updateAuthUI();
+      const userStr = localStorage.getItem('user');
+      const user = userStr ? JSON.parse(userStr) : null;
+      const userNameSpan = document.getElementById('user-name');
+      if (user && user.nama) {
+        userNameSpan.textContent = user.nama;
+      } else {
+        userNameSpan.textContent = 'Masuk';
+      }
+      loadFavoriteMenus();
+    });
+
+    // Toggle menu hamburger
+    document.querySelector('.hamburger').addEventListener('click', () => {
+      document.querySelector('.nav-menu').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
