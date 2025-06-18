@@ -151,7 +151,7 @@ File pengujian utama:
 ## 👨‍💻 Pengembang
 
 Dikembangkan oleh tim untuk tugas **Rekayasa Perangkat Lunak**.  
-📧 Hubungi kami melalui [email@example.com](mailto:email@example.com) untuk pertanyaan, laporan bug, atau kontribusi.
+📧 Hubungi kami melalui [rizkianuari83@gmail.com](mailto:rizkianuari83@gmail.com) untuk pertanyaan, laporan bug, atau kontribusi.
 
 ---
 
@@ -162,14 +162,3 @@ Dikembangkan oleh tim untuk tugas **Rekayasa Perangkat Lunak**.
 
 ---
 
-### Penjelasan Perubahan
-1. **Badge JavaScript & Teknologi Lain**: Menambahkan badge untuk JavaScript (ES6+), Node.js, Express, MySQL, JWT, dan lisensi MIT menggunakan Shields.io untuk visual yang profesional.
-2. **Struktur yang Lebih Menarik**: Menggunakan header dengan ikon, emoji, dan subjudul yang jelas untuk memudahkan pembacaan.
-3. **Desain Visual**: Menambahkan logo placeholder, teks berpusat, dan ajakan untuk memberi bintang di GitHub untuk meningkatkan keterlibatan.
-4. **Bagian Baru**:
-   - **Teknologi yang Digunakan**: Mencantumkan teknologi utama untuk konteks.
-   - **Rencana Pengembangan**: Menambahkan daftar fitur yang direncanakan untuk menunjukkan visi proyek.
-5. **Nada yang Ramah**: Menggunakan bahasa yang lebih santai dan mengundang, dengan emoji untuk menarik perhatian.
-6. **Catatan Penting**: Diperjelas dengan poin-poin untuk memastikan pengguna memahami hal-hal kritis seperti konfigurasi database dan keamanan.
-
-Jika Anda ingin menambahkan badge lain (misalnya untuk Jest atau Tailwind CSS) atau elemen spesifik seperti screenshot aplikasi, beri tahu saya! Saya juga bisa membantu menyesuaikan README untuk kebutuhan tertentu atau menambahkan bagian seperti FAQ atau cara kontribusi.
