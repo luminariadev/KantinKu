@@ -197,7 +197,13 @@ function displayRecommendations(menus, replace = true) {
         container.appendChild(item);
 
         item.addEventListener('click', () => {
-            showMenuDetail(menu.id_menu);
+            if (typeof showFoodDetails === 'function') {
+                showFoodDetails(menu.id_menu);
+            } else if (typeof showMenuDetail === 'function') {
+                showMenuDetail(menu.id_menu);
+            } else {
+                console.warn('No function found to show menu details modal');
+            }
         });
     });
 
