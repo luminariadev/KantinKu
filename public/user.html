@@ -310,8 +310,25 @@
     <script src="js/global.js"></script>
     <script src="js/user-recommendations.js"></script>
     <script src="js/user-reviews.js"></script>
+    <script src="js/user.js"></script>
     <script src="js/loadFooter.js"></script>
     <script src="js/contactForm.js"></script>
+
+    <!-- Modal for menu details -->
+    <div id="food-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+            <button id="close-modal" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+            <img id="modal-food-image" src="https://via.placeholder.com/600x400?text=Menu+Image" alt="Menu Image" class="w-full h-64 object-cover rounded-md mb-4" />
+            <h2 id="modal-food-name" class="text-2xl font-semibold mb-2"></h2>
+            <p id="modal-food-category" class="text-gray-600 mb-2"></p>
+            <p id="modal-food-price" class="text-orange-500 font-bold mb-4"></p>
+            <p id="modal-food-description" class="text-gray-700"></p>
+            <button id="add-to-favorites" class="mt-4 px-4 py-2 bg-orange-400 text-white rounded hover:bg-orange-500 flex items-center gap-2">
+                <i class="far fa-heart text-xl"></i> Tambah ke Favorit
+            </button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             if (!isLoggedIn()) {
